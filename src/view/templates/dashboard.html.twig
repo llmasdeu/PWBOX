@@ -1,0 +1,132 @@
+{% extends "base.html.twig" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <img src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" border="1" alt="img user" width="32" height="32">
+    <a href="{{ url }}/profile">User Profile</a><br>
+    <a href="{{ url }}/logout">Log Out</a>
+    <h1 class="text-center alert alert-primary">Dashboard</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">root</li>
+            {% if folder.rootFolder == false %}
+                <li class="breadcrumb-item" aria-current="page">{{ folder.name }}</li>
+                {% for subfolder in folder.folders %}
+                    {% if folder.name == subfolder.name %}
+                        <li class="breadcrumb-item" aria-current="page">{{ subfolder.name }}</li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </ol>
+    </nav>
+    {% if statusMessage == "success" %}
+      {% if action == "add_file" %}
+      <p class="status-l success">The file was uploaded successfully!</p>
+      {% elseif action == "add_folder" %}
+      <p class="status-l success">The folder was created successfully!</p>
+      {% elseif action == "rename_file" %}
+      <p class="status-l success">The file was renamed successfully!</p>
+      {% elseif action == "rename_folder" %}
+      <p class="status-l success">The folder was renamed successfully!</p>
+      {% elseif action == "share_folder" %}
+      <p class="status-l success">The folder was shared successfully!</p>
+      {% elseif action == "remove_file" %}
+      <p class="status-l success">The file was removed successfully!</p>
+      {% elseif action == "remove_folder" %}
+      <p class="status-l success">The folder was removed successfully!</p>
+      {% endif %}
+    {% elseif statusMessage == "error" %}
+      {% if action == "add_file" %}
+      <p class="status-l error">Error! The file couldn't be uploaded.</p>
+      {% elseif action == "add_folder" %}
+      <p class="status-l error">Error! The folder couldn't be created.</p>
+      {% elseif action == "rename_file" %}
+      <p class="status-l error">Error! The file couldn't be renamed.</p>
+      {% elseif action == "rename_folder" %}
+      <p class="status-l error">Error! The folder couldn't be renamed.</p>
+      {% elseif action == "share_folder" %}
+      <p class="status-l error">Error! The folder couldn't be shared.</p>
+      {% elseif action == "remove_file" %}
+      <p class="status-l error">Error! The file couldn't be removed.</p>
+      {% elseif action == "remove_folder" %}
+      <p class="status-l error">Error! The folder couldn't be removed.</p>
+      {% endif %}
+    {% endif %}
+    {% if folder.adminRole == true %}
+        <div class="row text-center management">
+            <div class="col-auto">
+                <form id="add_file_form" action="{{ url }}/addfile/{{ folder.hashId }}" enctype="multipart/form-data" method="POST">
+                    <input type="file" name="file" size="2048" accept=".pdf, .jpg, .png, .gif, .md, .txt">
+                    <input type="submit" class="btn-dark" value="Upload File">
+                </form>
+            </div>
+            {% if folder.sharedList == false %}
+                <div class="col-auto">
+                    <form id="add_folder_form" action="{{ url }}/addfolder/{{ folder.hashId }}" enctype="application/x-www-form-urlencoded" method="POST">
+                        <input type="text" name="folder_name" placeholder="Folder Name">
+                        <input type="submit" class="btn-dark" value="Create Folder">
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <form id="share_folder_form" action="{{ url }}/sharefolder/{{ folder.hashId }}/{{ folder.hashId }}" enctype="application/x-www-form-urlencoded" method="POST">
+                        <input type="email" name="email" placeholder="E-mail">
+                        <label for="admin">Do you want this user to get admin permissions on this folder?</label>
+                        <input type="radio" name="admin" value="Yes">Yes
+                        <input type="radio" name="admin" value="No" checked>No
+                        <input type="submit" class="btn-dark" value="Share This Folder">
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row mt-4"><a style="margin-left: 15px" href="{{ url }}/dash/shared">List folders shared with me</a></div>
+    {% endif %}
+        <h2 class="text-center mt-4 mb-2">Available folders</h2>
+        {% for subfolder in folder.folders %}
+            <div id="{{ subfolder.hashId }}" class="folder">
+                <div class="row">
+                    {% if folder.guest == false or folder.sharedList == true %}
+                    <p class="name col-auto"><a href="{{ url }}/dash/{{ subfolder.hashId }}">{{ subfolder.name }}</a></p>
+                    {% else %}
+                    <p class="name col-auto">{{ subfolder.name }}</p>
+                    {% endif %}
+                    {% if subfolder.adminRole == true and folder.guest == false %}
+                        <div class="actions">
+                            <div class="col-auto">
+                                <form id="rename_folder_form" action="{{ url }}/renamefolder/{{ folder.hashId }}/{{ subfolder.hashId }}" enctype="application/x-www-form-urlencoded" method="POST">
+                                    <input type="text" name="folder_name" placeholder="New Folder Name">
+                                    <input type="submit" value="Rename Folder">
+                                    <a href="{{ url }}/removefolder/{{ folder.hashId }}/{{ subfolder.hashId }}">Remove</a>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <form id="share_folder_form" action="{{ url }}/sharefolder/{{ folder.hashId }}/{{ subfolder.hashId }}" enctype="application/x-www-form-urlencoded" method="POST">
+                                <input type="email" name="email" placeholder="E-mail">
+                                <label for="admin">Do you want this user to get admin permissions on this folder?</label>
+                                <input type="radio" name="admin" value="Yes">Yes
+                                <input type="radio" name="admin" value="No" checked>No
+                                <input type="submit" value="Share Folder">
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        {% if folder.rootFolder == false %}
+            <input type="button" value="Go back" class="btn-dark" onclick="history.back()">
+        {% endif %}
+    {% for file in folder.files %}
+        <div id="{{ file.hashId }}" class="file">
+            <p class="name">{{ file.name }}</p>
+            <a href="{{ base_url }}/uploads/{{ folder.path }}/{{ file.path }}">Download</a>
+            {% if folder.adminRole == true %}
+                <div class="actions">
+                    <form action="/renamefile/{{ folder.hashId }}/{{ file.hashId }}" enctype="application/x-www-form-urlencoded" method="POST">
+                        <input type="text" name="filename" placeholder="New File Name">
+                        <input type="submit" value="Rename File">
+                    </form>
+                    <a href="{{ url }}/removefile/{{ folder.hashId }}/{{ file.hashId }}">Remove</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}

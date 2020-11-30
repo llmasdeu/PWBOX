@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block title %}Update User{% endblock %}
+{% block content %}
+    <div class="text-center m-4">
+        <div id="div_update">
+            <form id="form_updateUser" class="col" action="/updateuser" enctype="application/x-www-form-urlencoded" method="POST">
+                <img src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" border="1" alt="img user" width="128" height="128">
+                <h2 class="mb-4">Update User</h2>
+                {% if statusMessage == "success" %}
+                    {% if action == "update_user" %}
+                    <p class="status success">The profile was updated successfully.</p>
+                    {% endif %}
+                {% elseif statusMessage == "error" %}
+                    {% if action == "update_user" %}
+                    <p class="status error">Error! The profile couldn't be updated.</p>
+                    {% endif %}
+                {% endif %}
+                <div class="form-group"><input id="username" type="text" name="username" class="form-control-sm" placeholder={{ username }} readonly ></div>
+                <div class="form-group"><input id="email" type="email" name="email" class="form-control-sm" placeholder="New Email" onkeyup="comprovaInput('update')"></div>
+                <div class="form-group"><span id="error2" style="color: red"></span></div>
+                <div class="form-group"><input id="birthday" type="text" name="birthday" class="form-control-sm" placeholder={{ birthday }} readonly ></div>
+                <div class="form-group"><input id="password" type="password" name="password"  class="form-control-sm" placeholder="New Password" onkeyup="comprovaInput('update')"></div>
+                <div class="form-group"><span id="error4" style="color: red"></span></div>
+                <div class="form-group"><input id="confirmPassword" type="password" name="confirmPassword" class="form-control-sm" placeholder="Confirm New Password" onkeyup="comprovaInput('update')"></div>
+                <div class="form-group"><span id="error5" style="color: red"></span></div>
+                <div><button type="submit" name="button" class="btn-dark" onclick="sendForm(this)">Update Account</button></div><br>
+            </form>
+        </div>
+        <div>
+            <form id="form_deleteuser" action="/deleteuser"  enctype="application/x-www-form-urlencoded" method="POST">
+                <button id="delete" type="submit" name="button" class="btn-dark" formaction="/deleteuser" onclick="sendForm(this)">Delete Account</button>
+            </form>
+        </div>
+    </div>
+    <input type="button" value="Go back" class="btn-dark" onclick="history.back()">
+{% endblock %}
+{% block scripts %}
+    <script src="{{ base_url }}../assets/js/landingPage.js"></script>
+{% endblock %}

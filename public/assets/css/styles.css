@@ -1,0 +1,38 @@
+.register {
+  visibility: hidden;
+  color: red;
+}
+
+body {
+  background-color: cornflowerblue;
+}
+
+a {
+  color: black;
+}
+
+.status {
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 7px;
+  width: 50%;
+}
+
+.status-l {
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 7px;
+  width: 100%;
+}
+
+.success {
+  background: #93ffd0;
+  border: 2px solid #46fcad;
+  color: #03a35d;
+}
+
+.error {
+  background: #ff8989;
+  border: 2px solid #ff4747;
+  color: #a00000;
+}

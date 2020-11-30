@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>PWBOX</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">PWBOX</h1>
+
+<p>Pwbox is a custom file hosting service that offers a personal cloud storage with a simple and intuitive UI.</p>
+
+<h2 id="toc_1">Prerequisits</h2>
+
+<p>In order to be able to follow with this exercise you are going to need a development environment with:</p>
+
+<ul>
+<li>A running server (nginx, apache…)</li>
+<li>A dedicated virtual host for this project</li>
+<li>PHP 7</li>
+<li>Composer</li>
+</ul>
+
+<p><strong>Note:</strong> we recommend the use of the <strong>Homestead</strong> virtual box developed by the Laravel team.</p>
+
+<h2 id="toc_2">Introduction</h2>
+
+<p>This exercise has been divided in 13 blocks. Each one of them contains some mandatory and some optional functionalities. </p>
+
+<p>If you just want to pass the exercise you only need to implement all the functionalities marked as <em>mandatory</em>. The functionalities marked as <em>optional</em> are for the groups that want to be able to apply for the interview and avoid the final exam. </p>
+
+<p>The 13 blocks are explained in detail below.</p>
+
+<h2 id="toc_3">BLOCK 1  - Structure</h2>
+
+<p>This first block describes how the project must be structured and some characteristics about the design and the layouts. </p>
+
+<h3 id="toc_4">Mandatory</h3>
+
+<ol>
+<li><p>You need to define a base template <strong>base.html.twig</strong> that its going to be extended by all the views of the application. This template must define at least the following blocks:</p>
+
+<ul>
+<li><p><strong>Title:</strong> The title of the current page (SEO)</p></li>
+<li><p><strong>Styles:</strong> Where all the css files are going to be loaded</p></li>
+<li><p><strong>Header:</strong> It need to include the main navigation menu</p></li>
+<li><p><strong>Content:</strong> Includes the main content of every page</p></li>
+<li><p><strong>Footer</strong></p></li>
+<li><p><strong>Scripts:</strong> Where all your <code>.js</code> files are going to be loaded</p></li>
+</ul></li>
+<li><p>The base structure of the directories and files must be the same as the one used in the classes.</p>
+
+<div><pre class="line-numbers"><code class="language-none">app
+|__ settings.php
+|__ routes.php
+|__ dependencies.php
+public
+|__ assets
+|__ index.php
+src
+|__ Controller
+|__ Model
+|__ View
+var
+vendor</code></pre></div></li>
+<li><p>All the routes must be defined in the <code>app/routes.php</code> file.</p></li>
+<li><p>Every controller must only be associated with on route and vice versa (so its a 1-1 relation).</p></li>
+<li><p>Every controller must be defined in a new class inside the <code>src/Controller</code> directory.</p></li>
+<li><p>In order to implement the interfaces of your repositories you must use the package <strong>doctrine/dbal</strong>.</p></li>
+<li><p>All the external libraries or services that you want to use in your project must be installed using composer and of course must be defined inside the <code>composer.json</code> file.</p></li>
+<li><p>The server name of the virtual host that associated to this project must be <code>pwbox.test</code>.</p></li>
+<li><p>All the <strong>css</strong> and <strong>js</strong> code must be defined into external files inside the <code>public/assets</code> directory and be included in the <strong>styels</strong> and <strong>scripts</strong> blocks defined in the base layout.</p></li>
+</ol>
+
+<h3 id="toc_5">Optional</h3>
+
+<ol>
+<li><p>Use one of the following css framework to stylize your application:</p>
+
+<ol>
+<li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="https://bulma.io">Bulma</a></li>
+<li><a href="https://semantic-ui.com/">Semantic UI</a></li>
+</ol>
+
+<p>Remember to put all the required files of the framework into the assets folder and to include them into the corresponding blocks of your templates.</p></li>
+</ol>
+
+<h2 id="toc_6">BLOCK 2 - Landing page</h2>
+
+<p>This blocks describes some characteristics of the landing page of the application.</p>
+
+<h3 id="toc_7">Acceptance criteria</h3>
+
+<p>As a non logged in user, when I access to the home page of the application I must be redirected to the landing page.</p>
+
+<h3 id="toc_8">Mandatory</h3>
+
+<ol>
+<li>All the users without a valid session (not logged in) that access to the home page of the application <code>http://pwbox.test/</code> must be redirected to a cool landing page where all the characteristics of the product are well explained. As an example you can checkout the <a href="https://www.dropbox.com/?landing=dbv2">dropbox&#39;s landing page</a>.</li>
+</ol>
+
+<h2 id="toc_9">BLOCK 3 - Registration</h2>
+
+<p>This block describes the process of registering a new user into the system.</p>
+
+<h3 id="toc_10">Acceptance criteria</h3>
+
+<p>As a non registered user I must be able to create a new account.</p>
+
+<h3 id="toc_11">Mandatory</h3>
+
+<ol>
+<li><p>The form to register a new user must have the following inputs:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Characteristics</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>username</td>
+<td>Identifies the user inside the application</td>
+<td>Can only contain alphanumeric characters and a max length of 20 characters</td>
+</tr>
+<tr>
+<td>email</td>
+<td>It will be used to sent all the notifications of the application</td>
+<td>It must be a valid email</td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>The birthadate of the user</td>
+<td>It must be a valid date and must be well formatted</td>
+</tr>
+<tr>
+<td>password</td>
+<td></td>
+<td>The length of the password must be between 6 and 12 characters and it must contain at least one number and one upper case letter</td>
+</tr>
+<tr>
+<td>confirm_password</td>
+<td>Allow the users to double check the specified password</td>
+<td>It must match with the value of the password field</td>
+</tr>
+<tr>
+<td>profile_image</td>
+<td>The profile image of the user</td>
+<td>This field is optional. The image size must be less than 500Kb. If the user does not upload any image, then a default placeholder must be used instead</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>All the fields must be validated both in the frontend and in the backend. Of course the validations must be the same in both sides. The validation errors must be displayed below the corresponding invalid fields.</p></li>
+<li><p>You must encrypt the user&#39;s password before storing it into the database. Feel free to use  your preferred algorithm (explain a little bit your final choose in the readme).</p></li>
+<li><p>In order to access to the register form you need to add a new link into the main navigation menu of the header. Once the user is logged in this link must be removed from the menu.</p></li>
+<li><p>After finishing the registration the users must be redirected to the login page and a new folder must be created in the server and assigned to them. This root folder is where all the files and folders of the users are going to be stored.</p></li>
+</ol>
+
+<h3 id="toc_12">Optional</h3>
+
+<ol>
+<li>If the registration has been successful an activation link must be sent via email to the user. Once a user clicks on the link then his account must be marked as active in the database and the user must be logged in automatically.</li>
+<li>If a user without an active account access to his profile page you must display a warning telling him to activate the account and display a link to resend the activation email.</li>
+</ol>
+
+<p><strong>Note:</strong> In order to sent the emails you can use the <a href="https://packagist.org/packages/swiftmailer/swiftmailer">swiftmailer</a> library and in order to get sample emails to use in the register forms you can check <a href="https://mailinator.com/">mailinator</a>.</p>
+
+<h2 id="toc_13">BLOCK 4 - Login</h2>
+
+<p>This block describes the process of logging a user into the system. After the use has been registered he must be able to start a new session using his specified credentials.</p>
+
+<h3 id="toc_14">Acceptance criteria</h3>
+
+<p>As a registered user I must be able to start a new session using my credentials.</p>
+
+<h3 id="toc_15">Mandatory</h3>
+
+<ol>
+<li>The users without an active session (not logged in) must see a <strong>login</strong> link in the main navigation menu that must redirect them to a cool login form.</li>
+<li>The login form must contain a link to the register form.</li>
+<li>The login form must contain two inputs, one for the <strong>email</strong> and one for the <strong>password</strong>. The validations of both fields must be the same as in the register form and must be done both in the frontend and in the backend side.</li>
+<li>If both fields are valid then you need to check if the user exist in the database. If the user exists then he must be logged in and redirected to his dashboard. If the user does not exist then an error message muts be displayed in the login form warning the user about the problem.</li>
+</ol>
+
+<h3 id="toc_16">Optional</h3>
+
+<ol>
+<li><p>The user must be able to use both the username or the email in the first input of the login form.</p></li>
+<li><p>After the user has been logged in, his profile picture (or the default placeholder) must be shown in the navigation menu and it must be a link into the user&#39;s profile.</p>
+
+<p>​</p></li>
+</ol>
+
+<h2 id="toc_17">BLOCK 5 - Update profile</h2>
+
+<p>This block describes the process of updating the profile of an existent user. </p>
+
+<h3 id="toc_18">Acceptance criteria</h3>
+
+<p>As a logged in user I must be able to check and update my information.</p>
+
+<h3 id="toc_19">Mandatory</h3>
+
+<ol>
+<li>In order to access to this section of the application the users must be logged in. If a not logged in user try to manually access to this section the user must be redirected to an error page with a 403 status code.</li>
+<li>If the user is logged in then a new link with the name <strong>profile</strong> must be displayed in the navigation menu of the header. If you have implemented the first optional point of the <strong>BLOCK 3</strong> you can use the image as the link to the user&#39;s profile page.</li>
+<li>The users must be able to check all their information but they can only update the email, the password and the profile image. In order to update the password a new <code>confirm_password</code> field must be displayed below the current one.</li>
+<li>Before updating any information of the user the same validations as in the register form must be applied. If something goes wrong then an error message must be displayed below the invalid fields. The validations must be done both in the frontend and in the backend side.</li>
+<li>If the process is successful then the page must be reloaded in order to show the updated information.</li>
+</ol>
+
+<h3 id="toc_20">Optional</h3>
+
+<ol>
+<li>If a user updates his profile image then the previous one must be removed from the server.</li>
+<li>The process of updating the user information must be done using <strong>AJAX</strong> in order to avoid the second load of the page.</li>
+</ol>
+
+<h2 id="toc_21">BLOCK 6 - Delete account</h2>
+
+<p>This block describes the process of removing the account of a registered user.</p>
+
+<h3 id="toc_22">Acceptance criteria</h3>
+
+<p>As a registered user I must be able to remove my account and all my information must be successfully removed.</p>
+
+<h3 id="toc_23">Mandatory</h3>
+
+<ol>
+<li>In the user&#39;s profile page you must display a button that allow the users to remove their accounts</li>
+</ol>
+
+<h3 id="toc_24">Optional</h3>
+
+<ol>
+<li>Once the user clicks on the button to remove his account a popup alert must be displayed warning the user about the consequences of the action. This modal must contain two buttons, one for canceling the process and another one to continue it and remove the user&#39;s account.</li>
+</ol>
+
+<h2 id="toc_25">BLOCK 7 - Roles</h2>
+
+<p>This block describes all the different roles that must be available in the application. </p>
+
+<h3 id="toc_26">Acceptance criteria</h3>
+
+<p>As a registered user I must be able to take some actions in a file or a folder depending on my current role.</p>
+
+<h3 id="toc_27">Mandatory</h3>
+
+<ol>
+<li>The system must have two different roles available: <strong>admin</strong> and <strong>reader</strong>.</li>
+<li>All the roles of a user are associated to one root folder and to all its sub directories and files.</li>
+<li>A user must be able to have multiple roles assigned.</li>
+<li>The users with an <em>admin</em> role must be able to upload and remove files or folders from the root folder.</li>
+<li>The users with a <em>reader</em> role must be able to check and download files from the root foler.</li>
+</ol>
+
+<h2 id="toc_28">BLOCK 8 - User dashboard</h2>
+
+<p>This block decribes the characteristics and the structure of the user&#39;s dashboard. This dashboard is where all the <em>magic</em> happens. In this dashboard the user must be able to check t full list of all his files and folders and also add, rename and remove them.</p>
+
+<h3 id="toc_29">Acceptance criteria</h3>
+
+<p>As a registered user I must be able to check all my files and folders and to take some actions with them.</p>
+
+<h3 id="toc_30">Mandatory</h3>
+
+<ol>
+<li>Once the user access to his dashboard you must display a list containing only the first childs of the user&#39;s root folder. </li>
+<li>All the item&#39;s of the list of type <em>folder</em> must contain a link to the the same dashboard that are going show the current content of the specified folder.</li>
+<li>All the item&#39;s of the list of type <em>file</em> must contain a link to the current file location that will allow the users to download the current file.</li>
+<li>The dashboard must contain two buttons, one to add a new folder and another one to uplodad a new file. The functionalities of these buttons are going to be explained in more detail in the blocks 9 and 10.</li>
+</ol>
+
+<h3 id="toc_31">Optional</h3>
+
+<ol>
+<li>Detect a double click on the items of type <em>folder</em> instead of using the link to display its content. </li>
+</ol>
+
+<h2 id="toc_32">BLOCK 9 - Folders</h2>
+
+<p>This block describes all the available actions related with the users folders.</p>
+
+<h3 id="toc_33">Acceptance criteria</h3>
+
+<p>As a registered user with an <em>admin</em> role I must be able to add, rename and remove folders.</p>
+
+<p>As a registered user with a <em>reader</em> role I must be able to check and download the content of the folders.</p>
+
+<h3 id="toc_34">Mandatory</h3>
+
+<ol>
+<li>Every item of the dashboard&#39;s list of type <em>folder</em> must contain a button that allows the user to remove them. If the specified folder is not empty an error must be shown to the user and the action must fail.</li>
+<li>Every item of the dashboard&#39;s list of type <em>folder</em> must contain a button that allows the user to rename the specified folder. Once the user click&#39;s on the button, a new modal must be shown. This modal must contain a little form with just one input containing the current folder&#39;s name and one button to submit the form.</li>
+<li>Once the user clicks on the <em>new folder</em> button of the dashboard, a new modal must be shown. This modal must contain a little form with just one input where the users are going to introduce the name of the folder that they want to create and one button to submit the form. Once the user clicks on the submit button, the folder must be created inside the current selected folder of the dashbaord. So if the user is inside one of his folders the new folder must be created inside this folder.</li>
+</ol>
+
+<h3 id="toc_35">Optional</h3>
+
+<ol>
+<li>If the user removes a folder that is not empty then all the content inside this folder must be removed as well.</li>
+</ol>
+
+<h2 id="toc_36">BLOCK 10 - Files</h2>
+
+<p>This block describes all the available actions related with the users folders.</p>
+
+<h3 id="toc_37">Acceptance criteria</h3>
+
+<p>As a registered user with an <em>admin</em> role I must be able to add, rename and remove files.</p>
+
+<p>As a registered user with a <em>reader</em> role I must be able to check and download the files.</p>
+
+<h3 id="toc_38">Mandatory</h3>
+
+<ol>
+<li><p>Once the user clicks on the <em>new file</em> button of the dashboard, a new modal must be shown. This modal must contain a little form with just one input of type <em>file</em> that are going to allow the users to select a file from their computers. Once the user clicks on the submit button, the file must be uploaded inside the current selected folder of the dashbaord.</p></li>
+<li><p>The available file types are listed below:</p>
+
+<ol>
+<li>PDF (.pdf)</li>
+<li>JPG, PNG and GIF</li>
+<li>MARKDOWN (.md)</li>
+<li>TEXT (.txt)</li>
+</ol>
+
+<p>If a user try to upload a file with a non valid extension an error must be shown warning the user about the available file types.</p></li>
+<li><p>The maximum size allowed for a file is 2Mb. If a user try to upload a file with a larger size than 2Mb then an error must be shown warning the user.</p></li>
+<li><p>After the file has been successfully uploaded into the system the current page should be reloaded in order to show the new file on the list.</p></li>
+</ol>
+
+<h3 id="toc_39">Optional</h3>
+
+<ol>
+<li>The form to add a new file must allow the users to drop multiple files in it that are going to be uploaded concurrently. As a recommendation you can check the following js <a href="https://fineuploader.com/demos.html">library</a>.</li>
+</ol>
+
+<h2 id="toc_40">BLOCK 11 - Share</h2>
+
+<p>This block describes all the functionalities related with the process of sharing a folder with a user.</p>
+
+<h3 id="toc_41">Acceptance criteria</h3>
+
+<p>As a logged in user with an <em>admin</em> role I must be able to share a folder with another user of the system.</p>
+
+<h3 id="toc_42">Mandatory</h3>
+
+<ol>
+<li>You need to add another button in the users dashboards that allows them to share the current selected folder (just the current folder, not the <strong>subdirectories</strong>) with another user of the system. Once the user clicks on the button a new modal must be shown. This modal must contain just one input to introduce the email of the user who is going to receive the invitation.</li>
+<li>If the email introduced by the user is not from a registered user of the system, the process must fail and an error must be shown warning the user. </li>
+<li>By default all the users that have been invited to a folder are going to have the <em>reader</em> role.</li>
+<li>You need to add another link with the name <em>shared</em> into the main navigation menu. This link must redirect the users to another view. This view must display a list with all the shared folders where the user has been invited. Every item of the list must contain a link to the shared folder.</li>
+</ol>
+
+<h3 id="toc_43">Optional</h3>
+
+<ol>
+<li>The modal to share a folder with another must contain an input of type <em>select</em> that allows the users to choose the role that its going to be assigned to the other user.</li>
+<li>Once the user shares a folder with another user, this user should be able to also access to all the subdirectories of the specified folder. </li>
+</ol>
+
+<h2 id="toc_44">BLOCK 12 - Storage capacity</h2>
+
+<p>This block describes how the storage capacity should be handled.</p>
+
+<h3 id="toc_45">Mandatory</h3>
+
+<ol>
+<li>Once a user is registered into the system 1Gb of storage space must be assigned to them</li>
+<li>Every time a user upload a new file into one of his folders, his available remaining space must be recalculated</li>
+<li>If the user try to upload a new file with a larger size than the remaining space then the operation must fail and a warning must be shown to the user</li>
+</ol>
+
+<h2 id="toc_46">BLOCK 13 - Notifications -- Optional</h2>
+
+<p>This block describes all the different kind of notifications that are available in the system. </p>
+
+<p><strong>Note:</strong>  This block is entirely <strong>optional</strong>. </p>
+
+<h3 id="toc_47">Acceptance criteria</h3>
+
+<p>As a registered user that has shared a folder to another user I must be able to receive some notification when certain actions happens in the system.</p>
+
+<h3 id="toc_48">Mandatory</h3>
+
+<ol>
+<li>Every time a user that has been invited to an specific folder with an <em>admin</em> role, renames, deletes or add a new file in it, a notification must be sent via email to the owner of the folder.</li>
+<li>You need to add a new link with the name <em>notifications</em> into the main navigation menu that will redirect the users to a page where they will be able to see a list with all the received notifications.</li>
+</ol>
+
+<h2 id="toc_49">REQUIREMENTS AND DELIVERY</h2>
+
+<p>In order to pass the exercise you need to implement all the functionalities marked as <em>mandatory</em> that have been distributed along the 13 blocks. By doing this you aim to obtain the maximum qualification but you will need to go to the final exam. </p>
+
+<p>In order to avoid the final exam, you need to implement also all the functionalities marked as <em>optional</em>. Remember that the interviews are individual and mandatory to all the members of the groups.</p>
+
+<p>The last day to deliver the exercise is in May 18 at 23:00pm. All the exercises delivered before this date are not going to be accepted. The requeriments of the delivery are listed below:</p>
+
+<ol>
+<li>It need to be hosted in a private repository in <strong>Github</strong>, <strong>Gitlab</strong> or <strong>Bitbucket</strong>. Remember to share the URL of your project to the professors.</li>
+<li>The name of the repository must follow the following pattern <code>PW_PWBOX_GROUP_X</code> where the X should be replaced with the group number.</li>
+<li>Every member of the team needs to push at least 10 commits.</li>
+<li>You need to push a named tag witht the name <code>final_delivery</code>. Remember that the last commit associated to this tag is the one that its going to be used to rate the exercise, so check your code before pushing it to the remote.</li>
+<li>You need to add a brief <strong>README</strong> explaining all the things that you think that we the professors must know in order to run and test your application. At the end of the <strong>README</strong> specify the hours that every member of the group have invested in implementing the exercise. Be as honest as possible :)</li>
+<li>Finally remember to apply to one of the scheduled interviews that you can find in the Estudy.</li>
+</ol>
+
+<p><strong>Note:</strong> Any copy of an exercise will involve that both groups (the one that copies and the one that allows the copy) will suspend the exercise and you won&#39;t be allowed to re-exam.</p>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+
+</body>
+
+</html>

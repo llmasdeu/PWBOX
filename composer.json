@@ -1,0 +1,33 @@
+{
+    "name": "sergioalvarez/pwbox",
+    "description": "Practica WebII",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Sergio",
+            "email": "ls31495@salleurl.edu"
+        },
+        {
+            "name": "Xavi",
+            "email": "ls29093@salleurl.edu"
+        },
+        {
+            "name": "Lluís",
+            "email": "ls31344@salleurl.edu"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0",
+        "doctrine/dbal": "^2.7",
+        "twig/twig": "^2.0",
+        "twbs/bootstrap": "4.0.0",
+        "slim/twig-view": "^2.3",
+        "hashids/hashids": "^3.0",
+        "alrik11es/cowsayphp": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pwbox\\": "src/"
+        }
+    }
+}
